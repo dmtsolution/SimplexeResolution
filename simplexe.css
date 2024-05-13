@@ -1,6 +1,22 @@
 .titre-simplexe h3{
     text-align: center;
     margin-top: 1em;
+    color:blue;
+    margin: 0.5em;
+
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.footer {
+    margin-top: auto;
+}
+
+.nav-link{
     color:blue
 }
 
@@ -9,7 +25,7 @@
 }
 
 .simplexe-contenaire{
-    margin:1em ;
+    margin:0.5em ;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -55,18 +71,58 @@
 }
 
 .contrainte input,
+
 .contrainte select {
     width: 65px;
     margin-right: 5px;
 }
 
-.noter-bien{
+.resolution-contenaire{
     display: flex;
     justify-content: center;
-    color:red
+ 
 }
 
 .noter-bien{
+    display: flex;
+    justify-content: center;
+    color:red;
+    flex-wrap: wrap;
+}
+
+.simplxe-about{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0.5em;
+    
+}
+
+.description{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1em;
     width: 700px;
-    margin: auto;
+}
+
+.titre-about h3{
+    text-align: center;
+    margin-top: 2em;
+    color:red;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+
+}
+
+.groupe{
+    display: flex;   
+    justify-content: center; 
+    flex-wrap: wrap;
+    column-gap: 2em;
+    row-gap: 2em;
+}
+
+.membre{
+    color: blue;
 }

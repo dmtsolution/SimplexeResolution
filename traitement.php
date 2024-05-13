@@ -148,6 +148,10 @@ for ($i = 1; $i <= $numConstraints; $i++) {
 $solveData = solveSimplex($numVariables, $numConstraints, $A, $b, $c);
 
 // Affichage de la solution optimale
+echo '<div class="container">';
+echo '<div class="row justify-content-center">';
+echo '<div class="col-md-8">';
+
 echo '<div class="titre-simplexe">
         <h3>Solution du simplexe</h3>
     </div>';
@@ -196,9 +200,8 @@ if ($solveData['unbounded']) {
     echo '<div class="titre-simplexe">
             <h3>Tableau des itérations</h3>
         </div>
-        <div class="simplexe-contenaire">
-            <div class="simplexe-parametres">
-                <div class="table-responsive">
+        <div class="resolution-contenaire mb-4">
+                <div class="table-responsive" style="overflow-y: auto;">
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -230,7 +233,17 @@ if ($solveData['unbounded']) {
     echo '</tbody>
         </table>
     </div>
-</div>
 </div>';
 }
+echo '</div>';
+echo '</div>';
+echo '</div>';
 ?>
+
+<?php 
+// Pied de de page
+ require('footer.php');
+ ?>
+
+</body>
+</html>

@@ -35,25 +35,10 @@
         </div>
     </div>
 
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<?php 
+// Pied de de page
+ require('footer.php');
+ ?>
 </body>
 </html>
 

@@ -9,7 +9,7 @@
     </div>
 
 <div class="simplexe-contenaire">
-        <div class="simplexe-parametres mt-4">
+        <div class="simplexe-parametres mt-4 mb-4">
             <form action="traitement.php" method="get">
                 <div class="simplexe-but mt-2">
                     <label><b>Objectif de la fonction : Maximiser ou Minimiser ?</b></label>
@@ -108,3 +108,12 @@
             }
         }
     </script>
+
+
+<?php 
+// Pied de de page
+ require('footer.php');
+ ?>
+
+</body>
+</html>
