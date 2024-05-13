@@ -8,4 +8,4 @@ MINTSA-MI OBAME DIMITRI, ALEMAWO ABLA RUTH et N'SOUASSANI RABBY SYDNEY DESLAND, 
 Mme Manal AYAD (Professeur de recherche opérationnelle)
 
 # Lien du site de résolution 
-https://woleuschool.com/OnePhaseSimplex/index.php
+https://secretchat.eu5.org/OnePhaseSimplex/index.php
