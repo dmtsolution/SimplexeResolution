@@ -9,7 +9,7 @@
     </div>
 
 <div class="simplexe-contenaire">
-        <div class="simplexe-parametres mt-4 mb-4">
+        <div class="simplexe-parametres mt-4 mb-4" style="overflow-y: auto;">
             <form action="traitement.php" method="get">
                 <div class="simplexe-but mt-2">
                     <label><b>Objectif de la fonction : Maximiser ou Minimiser ?</b></label>
@@ -76,7 +76,7 @@
 
 
                 </div>
-                <button type="submit" class="btn btn-success mt-4 masquer">Résoudre</button>
+                <button type="submit" class="btn btn-success mt-4 mb-4 masquer">Résoudre</button>
             </form>
         </div> 
     </div>
