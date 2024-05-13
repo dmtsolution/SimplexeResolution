@@ -174,7 +174,7 @@ if ($solveData['unbounded']) {
     foreach ($solveData['solution'] as $key => $value) {
         echo '<tr>
                 <th scope="row">' . $key . '</th>
-                <td>' . (($key == 'z') ? '<span style="color:green;font-weight:bold;">' . number_format($value, 2) . '</span>' : number_format($value, 2)) . '</td>
+                <td>' . (($key == 'z') ? '<span style="color:green;font-weight:bold;">' . (is_numeric($value) ? number_format($value, 2) : $value) . '</span>' : (is_numeric($value) ? number_format($value, 2) : $value)) . '</td>
             </tr>';
     }
     
