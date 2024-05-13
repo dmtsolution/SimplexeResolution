@@ -41,7 +41,7 @@ body {
 }
 
 .simplexe-fonction{
-    width: 500px;
+    width: max-content;
 }
 
 .simplexe-fonction input[type="number"] {
