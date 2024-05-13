@@ -8,7 +8,9 @@
         <a href="index.php"><b>Accueil</b></a> / Objectif de la fonction et coefficients 
     </div>
 
-<div class="simplexe-contenaire">
+    <div class="container">
+    <div class="row justify-content-center">
+    <div class="col-md-8">
         <div class="simplexe-parametres mt-4 mb-4" style="overflow-y: auto;">
             <form action="traitement.php" method="get">
                 <div class="simplexe-but mt-2">
@@ -20,7 +22,6 @@
                     </select>
                     <div class="invalid-feedback">Ce champ est obligatoire.</div>
                 </div>
-
                 <div class="simplexe-fonction mt-4 masquer">
                     <label class="mb-1"><b>Fonction Objectif :</b></label><br>
                     <p id="objectif"></p>
@@ -79,7 +80,9 @@
                 <button type="submit" class="btn btn-success mt-4 mb-4 masquer">Résoudre</button>
             </form>
         </div> 
-    </div>
+      </div> 
+     </div> 
+    </div> 
 
     <script>
         function Objectif(Objectif) {

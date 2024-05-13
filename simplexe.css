@@ -24,6 +24,10 @@ body {
     width: 120px;
 }
 
+.masquer{
+    display: none;
+}
+
 .simplexe-contenaire{
     margin:0.5em ;
     display: flex;
@@ -31,13 +35,18 @@ body {
     flex-wrap: wrap;
 }
 
-.masquer{
-    display: none;
+.simplex-parametres{
+    display: flex;
+    justify-content: center;
+}
+
+.simplexe-fonction{
+    width: 500px;
 }
 
 .simplexe-fonction input[type="number"] {
     display: inline-block;
-    width: 65px;
+    width: 90px;
     height: 30px;
     margin-right: 5px;
 }
@@ -66,7 +75,7 @@ body {
 .contrainte input,
 
 .contrainte select {
-    width: 65px;
+    width: 90px;
     margin-right: 5px;
 }
 
