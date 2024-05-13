@@ -1,0 +1,72 @@
+.titre-simplexe h3{
+    text-align: center;
+    margin-top: 1em;
+    color:blue
+}
+
+.logo{
+    width: 120px;
+}
+
+.simplexe-contenaire{
+    margin:1em ;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.simplexe-parametres{
+    width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.masquer{
+    display: none;
+}
+
+.simplexe-fonction input[type="number"] {
+    display: inline-block;
+    width: 65px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.simplexe-fonction span {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.simplexe-fonction label,
+.simplexe-fonction p {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.contrainte {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.contrainte label {
+    margin-right: 10px;
+}
+
+.contrainte input,
+.contrainte select {
+    width: 65px;
+    margin-right: 5px;
+}
+
+.noter-bien{
+    display: flex;
+    justify-content: center;
+    color:red
+}
+
+.noter-bien{
+    width: 700px;
+    margin: auto;
+}
