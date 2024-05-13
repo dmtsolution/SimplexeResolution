@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
                     <a class="nav-link" href="about.php">À propos de nous</a>
-                    <a class="nav-link" href="code.php">Code source</a>
+                    <a class="nav-link" href="https://github.com/dmtsolution/SimplexeResolution" target="_blank">Code source</a>
                 </div>
             </div>
         </div>
