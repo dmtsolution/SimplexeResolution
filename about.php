@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="card infos" style="width: 18rem;">
-                    <img src="images/.png" class="card-img-top" alt="...">
+                    <img src="images/sydney.png" class="card-img-top" alt="...">
                     <div class="card-body">
                         <p class="card-text text-center"><b>N'SOUASSANI RABBY SYDNEY DESLAND</b></p>
                     </div>
