@@ -5,7 +5,7 @@ require('header.php');
 
 <!-- Pour faciliter la navigation  -->
 <div class="lien-navigation mx-2">
-   <a href="/"><b>Accueil</b></a> / <a href="ajout-variables.php?v-decisions=<?=$_GET['v_decisions']?>&contraintes=<?=$_GET['contraintes_count']?>"><b>Objectif de la fonction et coefficients</b></a> / Solution du simplexe
+   <a href="index.php"><b>Accueil</b></a> / <a href="ajout-variables.php?v-decisions=<?=$_GET['v_decisions']?>&contraintes=<?=$_GET['contraintes_count']?>"><b>Objectif de la fonction et coefficients</b></a> / Solution du simplexe
 </div>
 
 <?php

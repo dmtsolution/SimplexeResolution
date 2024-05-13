@@ -5,7 +5,7 @@
 
      <!-- Pour faciliter la navigation  -->
      <div class="lien-navigation mx-2">
-        <a href="/"><b>Accueil</b></a> / Objectif de la fonction et coefficients 
+        <a href="index.php"><b>Accueil</b></a> / Objectif de la fonction et coefficients 
     </div>
 
 <div class="simplexe-contenaire">
