@@ -51,7 +51,6 @@
                         }
                         echo '<select name="cont' . $i . '_ineq" class="form-select form-select-sm" id="cont' . $i . '_ineq">';
                         echo '<option value="<="><=</option>';
-                        echo '<option value=">=">>=</option>';
                         echo '</select> ';
                         echo '<input required name="cont' . $i . '_val" type="number" class="form-control" id="cont' . $i . '_val">';
                         echo '</div>';

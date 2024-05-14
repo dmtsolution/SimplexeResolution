@@ -187,13 +187,12 @@ if ($solveData['unbounded']) {
     </div>
 </div>';
 
-
     echo '<div class ="noter-bien">
-        <div class="noter-fils">
-        NB : On optient pas toujours les bonnes valeurs des xi (x1, x2 ...) dans la solution ci-dessus par rapport à la complexité du problème (affectation difficile).
-        Pour éviter donc de se tromper, consultez alors les valeurs des xi de la solution dans le dernier tableau des itérations au niveau de la dernière colonne au-dessus de la valeur de z.
-        La valeur de z sera toujours la bonne !
-        </div>
+    <div class="noter-fils">
+    NB : On optient pas toujours les bonnes valeurs des xi (x1, x2 ...) dans la solution ci-dessus par rapport au fait que leurs positions changent (affectation difficile avec cet algorithme).
+    Pour éviter donc de se tromper, consultez alors les valeurs des xi de la solution dans le dernier tableau des itérations au niveau de la dernière colonne au-dessus de la valeur de z.
+    La valeur de z sera toujours la bonne !
+    </div>
     </div>';
 
     // Affichage du tableau des différentes itérations

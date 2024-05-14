@@ -10,8 +10,7 @@
         <div class="simplxe-about">
             <div class="description mt-2 bg-light">
                 <p>Ce site est le fruit du projet de recherche opérationnelle donné en classe par madame <b>Manal AYAD</b> qui consistait à créer un algorithme
-                  capable de résoudre un problème de simplexe en une phase. Il sera bien évidemment dans le futur après son
-                  amélioration un site officiel de résolution du simplexe en une phase. 
+                  capable de résoudre un problème de simplexe en une phase. 
                 </p>
             </div>
         </div>
