@@ -3,14 +3,15 @@
 require('header.php');
 ?>
 
+
 <!-- Pour faciliter la navigation  -->
 <div class="lien-navigation mx-2">
    <a href="index.php"><b>Accueil</b></a> / <a href="ajout-variables.php?v-decisions=<?=$_GET['v_decisions']?>&contraintes=<?=$_GET['contraintes_count']?>"><b>Objectif de la fonction et coefficients</b></a> / Solution du simplexe
 </div>
 
 <?php
-// Fonction pour résoudre le problème du simplexe
-function solveSimplex($numVariables, $numConstraints, $A, $b, $c) {
+// Fonction pour résoudre le problème du simplexe pour la maximisation
+function solveMaximisation($numVariables, $numConstraints, $A, $b, $c) {
     $MAX_VARIABLES = 10;
     $MAX_CONSTRAINTS = 10;
     $tableauSimplexe = array_fill(0, $MAX_CONSTRAINTS + 1, array_fill(0, $MAX_VARIABLES + $numConstraints + 1, 0));
@@ -122,6 +123,15 @@ function solveSimplex($numVariables, $numConstraints, $A, $b, $c) {
     return array('solution' => $solution, 'iterationsTable' => $iterationsTable, 'unbounded' => false);
 }
 
+// Fonction pour résoudre le problème du simplexe pour la minimisation
+function solveMinimisation($numVariables, $numConstraints, $A, $b, $c) {
+    // Inverse des coefficients de la fonction objectif pour la minimisation
+    $c = array_map(function($value) { return -$value; }, $c);
+    // Appel de la fonction de résolution pour la maximisation avec les coefficients inversés
+    return solveMaximisation($numVariables, $numConstraints, $A, $b, $c);
+}
+
+
 // Lecture des entrées depuis l'URL
 $numVariables = $_GET['v_decisions'];
 $numConstraints = $_GET['contraintes_count'];
@@ -144,77 +154,91 @@ for ($i = 1; $i <= $numConstraints; $i++) {
     $b[] = $_GET['cont' . $i . '_val'];
 }
 
-// Résolution du problème du simplexe
-$solveData = solveSimplex($numVariables, $numConstraints, $A, $b, $c);
+// Vérification s'il faut maximiser ou minimiser
+$minimiser = isset($_GET['objectif']) && $_GET['objectif'] == 'minimiser';
+
+// Résolution du problème du simplexe en fonction de l'objectif (maximisation ou minimisation)
+if ($minimiser) {
+    $solveData = solveMinimisation($numVariables, $numConstraints, $A, $b, $c);
+} else {
+    $solveData = solveMaximisation($numVariables, $numConstraints, $A, $b, $c);
+}
 
 // Affichage de la solution optimale
 echo '<div class="container">';
 echo '<div class="row justify-content-center">';
 echo '<div class="col-md-8">';
 
-echo '<div class="titre-simplexe">
-        <h3>Solution du simplexe</h3>
-    </div>';
+echo '<div class="titre-simplexe">';
+echo '<h3>Solution du simplexe</h3>';
+echo '</div>';
 
 // Affichage du message pour le problème non borné
 if ($solveData['unbounded']) {
-    echo '<div class="titre-simplexe">
-            <h4 class="text-center mt-4" style="color:red;"><b>Problème non borné</b></h4>
-            <div class="text-center mt-4"><a href="ajout-variables.php?v-decisions=' . $_GET['v_decisions'] . '&contraintes=' . $_GET['contraintes_count'] . '"><button type="button" class="btn btn-lg btn-secondary">Retour</button></a></div>
-        </div>';
+    echo '<div class="titre-simplexe">';
+    echo '<h4 class="text-center mt-4" style="color:red;"><b>Problème non borné</b></h4>';
+    echo '<div class="text-center mt-4"><a href="ajout-variables.php?v-decisions=' . $_GET['v_decisions'] . '&contraintes=' . $_GET['contraintes_count'] . '"><button type="button" class="btn btn-lg btn-secondary">Retour</button></a></div>';
+    echo '</div>';
 } else {
     // Affichage de la solution optimale
-    echo '<div class="simplexe-contenaire">
-            <div class="simplexe-parametres">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Solution optimale</th>
-                            <th scope="col">Valeurs</th>
-                        </tr>
-                    </thead>
-                    <tbody>';
+    echo '<div class="simplexe-contenaire">';
+    echo '<div class="simplexe-parametres">';
+    echo '<table class="table">';
+    echo '<thead>';
+    echo '<tr>';
+    echo '<th scope="col">Solution optimale</th>';
+    echo '<th scope="col">Valeurs</th>';
+    echo '</tr>';
+    echo '</thead>';
+    echo '<tbody>';
     
     foreach ($solveData['solution'] as $key => $value) {
-        echo '<tr>
-                <th scope="row">' . $key . '</th>
-                <td>' . (($key == 'z') ? '<span style="color:green;font-weight:bold;">' . (is_numeric($value) ? number_format($value, 2) : $value) . '</span>' : (is_numeric($value) ? number_format($value, 2) : $value)) . '</td>
-            </tr>';
+        echo '<tr>';
+        echo '<th scope="row">' . $key . '</th>';
+        echo '<td>' . (($key == 'z') ? '<span style="color:green;font-weight:bold;">' . (is_numeric($value) ? number_format($value, 2) : $value) . '</span>' : (is_numeric($value) ? number_format($value, 2) : $value)) . '</td>';
+        echo '</tr>';
     }
     
-    echo '</tbody>
-        </table>
-    </div>
-</div>';
+    echo '</tbody>';
+    echo '</table>';
+    echo '</div>';
+    echo '</div>';
 
-    echo '<div class ="noter-bien">
-    <div class="noter-fils">
-    NB : On optient pas toujours les bonnes valeurs des xi (x1, x2 ...) dans la solution ci-dessus par rapport au fait que leurs positions changent (affectation difficile avec cet algorithme).
-    Pour éviter donc de se tromper, consultez alors les valeurs des xi de la solution dans le dernier tableau des itérations au niveau de la dernière colonne au-dessus de la valeur de z.
-    La valeur de z sera toujours la bonne !
-    </div>
-    </div>';
+    echo '<hr>'; // Ajout de la ligne horizontale ici
 
+    if(isset($_GET['objectif']) && $_GET['objectif'] !== 'minimiser'){
+    echo '<div class ="noter-bien">';
+    echo '<div class="noter-fils">';
+    echo 'NB : On obtient pas toujours les bonnes valeurs des xi (x1, x2 ...) dans la solution ci-dessus par rapport au fait que leurs positions changent (affectation difficile avec cet algorithme). Pour éviter donc de se tromper, consultez alors les valeurs des xi de la solution dans le dernier tableau des itérations au niveau de la dernière colonne au-dessus de la valeur de z. La valeur de z sera toujours la bonne !';
+    echo '</div>';
+    echo '</div>';
+    }else{
+        echo "L'algorithme a des difficultés à trouver les valeurs des xi mais le z est toujours le bon.
+        Cependant, un autre algorithme est aussi disponible où vous rentrez juste les coefficients, décidez de maximiser ou minimiser, entrez le nombre de variables et contraintes, ensuite obtiendrez les xi et le z de la solution (version de début en python avant la mise en ligne par convertion en PHP ce qui a causé ce problème).
+        Lien : <a href='https://colab.research.google.com/drive/1ImwQgbvkU8jSVIruBvSH8MuZ8TijYfx8?usp=sharing' target=_blank>OnePhaseSimple</a> (exécutez via le bouton situé à gauche tu texte # membres du groupe)";
+    }
+
+    if(isset($_GET['objectif']) && $_GET['objectif'] !== 'minimiser'){
     // Affichage du tableau des différentes itérations
-    echo '<div class="titre-simplexe">
-            <h3>Tableau des itérations</h3>
-        </div>
-        <div class="resolution-contenaire mb-4">
-                <div class="table-responsive" style="overflow-y: auto;">
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">Iteration</th>
-                                <th scope="col">Tableau du simplexe</th>
-                            </tr>
-                        </thead>
-                        <tbody>';
+    echo '<div class="titre-simplexe">';
+    echo '<h3>Tableau des itérations</h3>';
+    echo '</div>';
+    echo '<div class="resolution-contenaire mb-4">';
+    echo '<div class="table-responsive" style="overflow-y: auto;">';
+    echo '<table class="table table-striped table-bordered">';
+    echo '<thead>';
+    echo '<tr>';
+    echo '<th scope="col">Iteration</th>';
+    echo '<th scope="col">Tableau du simplexe</th>';
+    echo '</tr>';
+    echo '</thead>';
+    echo '<tbody>';
 
     foreach ($solveData['iterationsTable'] as $iterationData) {
-        echo '<tr>
-                <td>' . $iterationData['iteration'] . '</td>
-                <td>
-                    <table class="table table-bordered">';
+        echo '<tr>';
+        echo '<td>' . $iterationData['iteration'] . '</td>';
+        echo '<td>';
+        echo '<table class="table table-bordered">';
 
         foreach ($iterationData['tableau'] as $row) {
             echo '<tr>';
@@ -224,22 +248,23 @@ if ($solveData['unbounded']) {
             echo '</tr>';
         }
 
-        echo '</table>
-                </td>
-            </tr>';
+        echo '</table>';
+        echo '</td>';
+        echo '</tr>';
     }
 
-    echo '</tbody>
-        </table>
-    </div>
-</div>';
+    echo '</tbody>';
+    echo '</table>';
+    echo '</div>';
+    echo '</div>';
+   }
 }
-echo '</div>';
-echo '</div>';
-echo '</div>';
-?>
 
-<?php 
+echo '</div>';
+echo '</div>';
+echo '</div>';
+
+
 // Pied de de page
  require('footer.php');
  ?>
